@@ -91,10 +91,10 @@ async function loadSettings() {
     const subtitle = document.querySelector("#siteSubtitle");
 
     const mairieNom = s?.mairie?.nom || "Mairie";
-    if (siteTitle) siteTitle.textContent = mairieNom;
+    if (siteTitle) siteTitle.textContent = `Commune de ${s?.commune || ""}`;
     if (heroTitle) heroTitle.textContent = mairieNom;
     if (footerName) footerName.textContent = mairieNom;
-    if (subtitle) subtitle.textContent = s?.commune ? `Commune de ${s.commune}` : "Commune";
+    if (subtitle) subtitle.style.display = "none";
 
     // Logo (configurable)
     const logoImg = document.querySelector("#logoImg");
