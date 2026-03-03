@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Conseil municipal : ordres du jour, comptes rendus, délibérations." />
+  <title>Conseil municipal — Mairie de Roppe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Accueil">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-text">
+          <strong id="siteTitle">Mairie</strong>
+          <span id="siteSubtitle">Commune</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" type="button">
+        <span class="sr-only">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Navigation principale">
+        <a href="index.html#actus">Actualités</a>
+        <a href="index.html#agenda">Agenda</a>
+        <a href="index.html#demarches">Démarches</a>
+        <a href="conseil.html" aria-current="page">Conseil municipal</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Bandeau info importante (chargé depuis data/settings.json) -->
+  <section id="importantBar" class="important-bar" hidden>
+    <div class="container important-inner">
+      <div class="important-text">
+        <strong id="importantTitle">Information</strong>
+        <span id="importantMessage"></span>
+      </div>
+      <a id="importantLink" class="important-link" href="#" hidden>En savoir plus</a>
+      <button id="importantClose" class="important-close" type="button" aria-label="Fermer l’information">✕</button>
+    </div>
+  </section>
+
+  <main id="contenu" role="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="kicker">Publications</p>
+        <h1>Conseil municipal</h1>
+        <p class="lead">Ordres du jour, comptes rendus et documents téléchargeables.</p>
+
+        <div class="filters">
+          <label class="filter">
+            Recherche
+            <input id="meetingSearch" placeholder="Ex : budget, voirie, PLU…" />
+          </label>
+
+          <label class="filter">
+            Année
+            <select id="meetingYear">
+              <option value="all">Toutes</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="meetingsList" class="stack" aria-live="polite"></div>
+        <p class="muted small">
+          Pour ajouter un document : déposez le PDF dans <code>/docs/conseil/</code> puis ajoutez une entrée dans <code>/data/meetings.json</code>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="muted small">
+        © <span id="year"></span> <span id="footerName">Mairie</span>
+        · <span id="footerLinks"></span>
+      </p>
+      <a class="link small" href="#contenu">Haut de page ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

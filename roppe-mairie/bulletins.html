@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bulletins municipaux — Mairie de Roppe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">M</span><span class="brand-text"><strong>Mairie</strong><span>Commune</span></span></a>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="bulletins.html" aria-current="page">Bulletins municipaux</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="section">
+  <div class="container">
+    <h1>Bulletins municipaux</h1>
+    <div id="list" class="stack"></div>
+    <p class="muted small">Ajoutez les bulletins dans data/bulletins.json et les PDF dans /docs/bulletins/</p>
+  </div>
+</main>
+</body>
+</html>

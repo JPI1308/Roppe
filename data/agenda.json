@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2026-03-12",
+    "heure": "19:00",
+    "titre": "Conseil municipal",
+    "categorie": "Réunion officielle",
+    "lieu": "Salle du Conseil",
+	"image": "assets/img/agenda/conseil.png",
+    "summary": "Ordre du jour et documents disponibles.",
+    "url": "conseil.html"
+  },
+  {
+    "date": "2026-02-17",
+    "heure": "16:00–18:00",
+    "titre": "Permanence urbanisme",
+    "categorie": "Urbanisme",
+    "lieu": "Mairie (sur rendez-vous)",
+    "summary": "Informations PLU et dossiers.",
+    "url": "urbanisme.html"
+  },
+  {
+    "date": "2026-02-21",
+    "heure": "09:00",
+    "titre": "Collecte & tri",
+    "categorie": "Vie locale",
+    "lieu": "Commune",
+    "summary": "Consignes et points d’apport.",
+    "url": "#"
+  }
+]

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Bulletins municipaux — documents et informations." />
+  <title>Bulletins municipaux — Mairie de Roppe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Accueil">
+        <span class="brand-mark"><img id="logoImg" alt="Blason de Roppe" /></span>
+        <span class="brand-text">
+          <strong id="siteTitle">Mairie</strong>
+          <span id="siteSubtitle">Commune</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" type="button">
+        <span class="sr-only">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Navigation principale"></nav>
+
+    </div>
+  </header>
+
+
+  <section id="importantBar" class="important-bar" hidden>
+    <div class="container important-inner">
+      <div class="important-text">
+        <strong id="importantTitle">Information</strong>
+        <span id="importantMessage"></span>
+      </div>
+      <a id="importantLink" class="important-link" href="#" hidden>En savoir plus</a>
+      <button id="importantClose" class="important-close" type="button" aria-label="Fermer l’information">✕</button>
+    </div>
+  </section>
+
+
+  <main id="contenu" role="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="kicker">Publications</p>
+        <h1>Bulletins municipaux</h1>
+        <p class="lead">Bulletins municipaux au format PDF.</p>
+
+        <div class="filters">
+          <label class="filter">
+            Recherche
+            <input id="bullSearch" placeholder="Ex : budget, voirie, PLU…" />
+          </label>
+
+          <label class="filter">
+            Année
+            <select id="bullYear">
+              <option value="all">Toutes</option>
+            </select>
+          </label>
+        </div>
+        
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="bulletinsList" class="stack" aria-live="polite"></div>
+        <p class="muted small">Ajouter un PDF dans <code>/docs/bulletins/</code> puis le référencer dans <code>/data/bulletins.json</code>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <p class="muted small">
+          © <span id="year"></span> <span id="footerName">Mairie</span>
+          · <span id="footerLinks"></span>
+        </p>
+        <div id="partnerLogoWrap" class="partner-logo-wrap" aria-label="Partenaire"></div>
+      </div>
+      <a class="link small" href="#contenu">Haut de page ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

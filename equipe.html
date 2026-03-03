@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Équipe municipale — Mairie de Roppe" />
+  <title>Équipe municipale — Mairie de Roppe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Accueil">
+        <span class="brand-mark"><img id="logoImg" alt="Blason de Roppe" /></span>
+        <span class="brand-text">
+          <strong id="siteTitle">Mairie</strong>
+          <span id="siteSubtitle">Commune</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" type="button">
+        <span class="sr-only">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Navigation principale"></nav>
+    </div>
+  </header>
+
+  <section id="importantBar" class="important-bar" hidden>
+    <div class="container important-inner">
+      <div class="important-text">
+        <strong id="importantTitle">Information</strong>
+        <span id="importantMessage"></span>
+      </div>
+      <a id="importantLink" class="important-link" href="#" hidden>En savoir plus</a>
+      <button id="importantClose" class="important-close" type="button" aria-label="Fermer l’information">✕</button>
+    </div>
+  </section>
+
+  <main id="contenu" role="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="kicker">Municipalité</p>
+        <h1 id="teamTitle">Équipe municipale</h1>
+        <p class="lead" id="teamIntro"></p>
+
+        <div class="filters">
+          <label class="filter">
+            Recherche
+            <input id="teamSearch" placeholder="Ex : nom, commission, délégation…" />
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="teamSections" class="stack"></div>
+
+        <div class="card" style="margin-top: 18px;">
+          <h2 class="h3">Commissions</h2>
+          <div id="commissionList" class="stack"></div>
+        </div>
+
+        <p class="muted small" style="margin-top: 12px;">
+          Mise à jour : <code>/data/equipe-municipale.json</code>
+        </p>
+        <p class="muted small" id="teamMentions"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <p class="muted small">
+          © <span id="year"></span> <span id="footerName">Mairie</span>
+          · <span id="footerLinks"></span>
+        </p>
+        <div id="partnerLogoWrap" class="partner-logo-wrap" aria-label="Partenaire"></div>
+      </div>
+      <a class="link small" href="#contenu">Haut de page ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (async () => {
+      const wrap = document.querySelector("#teamSections");
+      const commissionsWrap = document.querySelector("#commissionList");
+      const search = document.querySelector("#teamSearch");
+      const titleEl = document.querySelector("#teamTitle");
+      const introEl = document.querySelector("#teamIntro");
+      const mentionsEl = document.querySelector("#teamMentions");
+
+      if (!wrap || !commissionsWrap) return;
+
+      let data;
+      try {
+        const res = await fetch("data/equipe-municipale.json", { cache: "no-store" });
+        if (!res.ok) throw new Error();
+        data = await res.json();
+      } catch {
+        wrap.innerHTML = '<div class="card"><p class="muted">Impossible de charger <code>/data/equipe-municipale.json</code>.</p></div>';
+        return;
+      }
+
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[c]));
+      const escAttr = (s) => String(s ?? "").replace(/"/g, "&quot;");
+
+      if (titleEl && data.titre_page) titleEl.textContent = data.titre_page;
+      if (introEl) introEl.textContent = data.intro || "";
+      if (mentionsEl) mentionsEl.textContent = data.mentions || "";
+
+      function memberCard(m, groupeTitre){
+        const meta = [m.fonction, groupeTitre].filter(Boolean).join(" · ");
+        const dels = Array.isArray(m.delegations) && m.delegations.length
+          ? `<p class="muted small"><strong>Délégations :</strong> ${esc(m.delegations.join(", "))}</p>` : "";
+        const comm = Array.isArray(m.commissions) && m.commissions.length
+          ? `<p class="muted small"><strong>Commissions :</strong> ${esc(m.commissions.join(", "))}</p>` : "";
+        const photo = m.photo
+          ? `<div class="team-photo"><img src="${escAttr(m.photo)}" alt="${escAttr(m.nom || "")}" loading="lazy"></div>`
+          : "";
+
+        return `
+          <article class="card team-card">
+            ${photo}
+            <p class="tag">${esc(m.fonction || "Élu(e)")}</p>
+            <h3>${esc(m.nom || "")}</h3>
+            ${meta ? `<p class="meta">${esc(meta)}</p>` : ""}
+            ${dels}
+            ${comm}
+          </article>
+        `;
+      }
+
+      function render(){
+        const q = (search?.value || "").trim().toLowerCase();
+
+        const groupsHtml = (data.groupes || []).map(g => {
+          const members = (g.membres || []).filter(m => {
+            if (!q) return true;
+            const hay = [
+              m.nom, m.fonction,
+              ...(m.delegations || []),
+              ...(m.commissions || [])
+            ].join(" ").toLowerCase();
+            return hay.includes(q);
+          });
+
+          if (!members.length) return "";
+
+          return `
+            <section class="stack">
+              <h2 class="h3">${esc(g.titre || "")}</h2>
+              <div class="grid cards">
+                ${members.map(m => memberCard(m, g.titre || "")).join("")}
+              </div>
+            </section>
+          `;
+        }).join("");
+
+        wrap.innerHTML = groupsHtml || '<div class="card"><p class="muted">Aucun résultat.</p></div>';
+
+        const commHtml = (data.commissions || []).filter(c => {
+          if (!q) return true;
+          const hay = [c.nom, c.objet, ...(c.membres || [])].join(" ").toLowerCase();
+          return hay.includes(q);
+        }).map(c => `
+          <div class="card">
+            <h3>${esc(c.nom || "")}</h3>
+            ${c.objet ? `<p class="muted small">${esc(c.objet)}</p>` : ""}
+            ${(c.membres || []).length ? `<p class="small"><strong>Membres :</strong> ${esc(c.membres.join(", "))}</p>` : ""}
+          </div>
+        `).join("");
+
+        commissionsWrap.innerHTML = commHtml || '<p class="muted">Aucune commission.</p>';
+      }
+
+      if (search) search.addEventListener("input", render);
+      render();
+    })();
+  </script>
+</body>
+</html>

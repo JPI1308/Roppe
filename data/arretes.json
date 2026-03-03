@@ -1,0 +1,33 @@
+[
+  {
+    "date": "2026-01-20",
+    "reference": "AM-2026-01",
+    "titre": "Arrêté municipal — Travaux de voirie",
+    "theme": "Voirie",
+    "documents": [
+      {
+        "label": "Arrêté (PDF)",
+        "file": "docs/arretes/2026-01-20-am-2026-01.pdf"
+      }
+    ],
+    "mots_cles": [
+      "circulation",
+      "travaux"
+    ]
+  },
+  {
+    "date": "2026-01-05",
+    "reference": "AM-2026-00",
+    "titre": "Arrêté municipal — Bruit (rappel)",
+    "theme": "Règlementation",
+    "documents": [
+      {
+        "label": "Arrêté (PDF)",
+        "file": "docs/arretes/2026-01-05-am-2026-00.pdf"
+      }
+    ],
+    "mots_cles": [
+      "bruit"
+    ]
+  }
+]

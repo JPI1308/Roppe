@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Accueil — documents et informations." />
+  <title>Accueil — Mairie de Roppe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Accueil">
+        <span class="brand-mark"><img id="logoImg" alt="Blason de Roppe" /></span>
+        <span class="brand-text">
+          <strong id="siteTitle">Mairie</strong>
+          <span id="siteSubtitle">Commune</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" type="button">
+        <span class="sr-only">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Navigation principale"></nav>
+
+    </div>
+  </header>
+
+
+  <section id="importantBar" class="important-bar" hidden>
+    <div class="container important-inner">
+      <div class="important-text">
+        <strong id="importantTitle">Information</strong>
+        <span id="importantMessage"></span>
+      </div>
+      <a id="importantLink" class="important-link" href="#" hidden>En savoir plus</a>
+      <button id="importantClose" class="important-close" type="button" aria-label="Fermer l’information">✕</button>
+    </div>
+  </section>
+
+
+  <main id="contenu" role="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="kicker">Site officiel de la commune</p>
+          <h1 id="heroTitle">Mairie de Roppe</h1>
+          <p class="lead">
+            Informations municipales, démarches, publications et agenda.
+            Site statique, simple à maintenir : contenus en JSON + documents en PDF.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#demarches">Accès aux démarches</a>
+            <a class="btn" href="#contact">Contact & horaires</a>
+          </div>
+
+          <div class="quick-links" aria-label="Accès direct">
+            <a class="chip" href="conseil.html">Comptes rendus</a>
+            <a class="chip" href="arretes.html">Arrêtés</a>
+            <a class="chip" href="urbanisme.html">Urbanisme</a>
+            <a class="chip" href="bulletins.html">Bulletins</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Encadré mairie">
+          <h2 class="h3">Informations pratiques</h2>
+          <p class="muted" id="mairieAddress"></p>
+          <p><strong>Tél.</strong> <a id="mairiePhoneLink" href="#">—</a></p>
+          <p class="muted small" id="mairieEmailWrap">Email : <a id="mairieEmailLink" href="#">—</a></p>
+
+          <div class="note">
+            <strong>Horaires d’ouverture</strong>
+            <ul class="list" id="mairieHours"></ul>
+          </div>
+
+          <a class="btn small" href="#contact">Tous les contacts</a>
+        </aside>
+      </div>
+    </section>
+
+    <section id="actus" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>À la une</h2>
+          <p class="muted">Informations municipales et communiqués.</p>
+        </div>
+
+        <div id="newsGrid" class="grid cards" aria-live="polite"></div>
+      </div>
+    </section>
+
+    
+
+    <!-- AGENDA MUNICIPAL -->
+    <section id="agenda" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Agenda municipal</h2>
+          <p class="muted">Réunions, permanences et événements à venir.</p>
+        </div>
+
+        <div id="agendaGrid" class="grid cards" aria-live="polite"></div>
+
+        <p style="margin-top: 14px;"><a class="btn small" href="agenda.html">Voir tout l’agenda →</a></p>
+      </div>
+    </section>
+
+<section id="demarches" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Publications & démarches</h2>
+          <p class="muted">Accès rapide aux documents officiels.</p>
+        </div>
+
+        <div class="grid tiles">
+          <a class="tile" href="conseil.html"><h3>Conseil municipal</h3><p class="muted small">ODJ, CR, PV…</p></a>
+          <a class="tile" href="arretes.html"><h3>Arrêtés municipaux</h3><p class="muted small">Classement par date, thème…</p></a>
+          <a class="tile" href="urbanisme.html"><h3>Urbanisme / PLU</h3><p class="muted small">PLU, documents, liens…</p></a>
+          <a class="tile" href="bulletins.html"><h3>Bulletins municipaux</h3><p class="muted small">PDF téléchargeables…</p></a>
+          <a class="tile" href="#"><h3>État civil</h3><p class="muted small">Actes, livret de famille…</p></a>
+          <a class="tile" href="#"><h3>Signalement</h3><p class="muted small">Voirie, éclairage…</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p class="muted">Nous écrire ou nous joindre.</p>
+        </div>
+
+        <div class="grid contact">
+          <div class="card">
+            <h3>Coordonnées</h3>
+            <p class="muted" id="contactAddress"></p>
+            <p><strong>Tél.</strong> <a id="contactPhone" href="#"></a></p>
+            <p class="muted small">Email : <a id="contactEmail" href="#"></a></p>
+          </div>
+
+          <form class="card" method="post" action="#" aria-label="Formulaire de contact">
+            <h3>Formulaire</h3>
+
+            <label>Nom
+              <input name="nom" autocomplete="name" required />
+            </label>
+
+            <label>Email
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+
+            <label>Objet
+              <input name="objet" required />
+            </label>
+
+            <label>Message
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+
+            <button class="btn primary" type="submit">Envoyer</button>
+            <p class="muted small">
+              Pour activer l’envoi, reliez ce formulaire à un traitement côté serveur (PHP, etc.) ou à un service.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <p class="muted small">
+          © <span id="year"></span> <span id="footerName">Mairie</span>
+          · <span id="footerLinks"></span>
+        </p>
+        <div id="partnerLogoWrap" class="partner-logo-wrap" aria-label="Partenaire"></div>
+      </div>
+      <a class="link small" href="#contenu">Haut de page ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

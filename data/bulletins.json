@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2025-12-01",
+    "numero": "Bulletin municipal #12",
+    "titre": "Bulletin municipal — Décembre 2025",
+    "documents": [
+      {
+        "label": "Télécharger (PDF)",
+        "file": "docs/bulletins/bulletin-2025-12.pdf"
+      }
+    ],
+    "mots_cles": [
+      "bulletin",
+      "décembre"
+    ]
+  },
+  {
+    "date": "2025-06-01",
+    "numero": "Bulletin municipal #11",
+    "titre": "Bulletin municipal — Juin 2025",
+    "documents": [
+      {
+        "label": "Télécharger (PDF)",
+        "file": "docs/bulletins/bulletin-2025-06.pdf"
+      }
+    ],
+    "mots_cles": [
+      "bulletin",
+      "juin"
+    ]
+  }
+]

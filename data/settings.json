@@ -1,0 +1,75 @@
+{
+  "commune": "Roppe",
+  "mairie": {
+    "nom": "Mairie de Roppe",
+    "adresse_ligne1": "33 avenue du Général de Gaulle",
+    "adresse_ligne2": "90380 Roppe",
+    "telephone": "+33384299170",
+    "email": "mairie@roppe.fr",
+    "horaires": [
+      "Lundi : 09:00–12:00",
+      "Mardi : 14:00–17:00",
+      "Jeudi : 09:00–12:00",
+      "Vendredi : 14:00–17:00"
+    ]
+  },
+  "info_importante": {
+    "active": true,
+    "style": "info",
+    "titre": "Information importante",
+    "message": "Exemple : Travaux de voirie — circulation alternée du 02/02 au 06/02. Merci de votre compréhension.",
+    "lien_label": "En savoir plus",
+    "lien_url": "index.html#actus"
+  },
+  "liens_footer": [
+    {
+      "label": "Mentions légales",
+      "url": "mentions-legales.html"
+    },
+    {
+      "label": "Accessibilité",
+      "url": "accessibilite.html"
+    },
+    {
+      "label": "Plan du site",
+      "url": "plan-du-site.html"
+    }
+  ],
+  "images": {
+    "logo": "assets/img/blason-roppe.png"
+  },
+  "navigation": [
+    {
+      "label": "À la une",
+      "url": "index.html#actus"
+    },
+
+    {
+      "label": "Équipe municipale",
+      "url": "equipe.html"
+    },
+    {
+      "label": "Démarches",
+      "url": "index.html#demarches"
+    },
+    {
+      "label": "Conseil municipal",
+      "url": "conseil.html"
+    },
+    {
+      "label": "Arrêtés",
+      "url": "arretes.html"
+    },
+    {
+      "label": "Urbanisme",
+      "url": "urbanisme.html"
+    },
+    {
+      "label": "Bulletins",
+      "url": "bulletins.html"
+    }
+  ],
+  "partenaires": {
+    "logo_footer": "assets/img/partenaires/territoire-belfort.png"
+  }
+}

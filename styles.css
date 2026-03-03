@@ -1,0 +1,481 @@
+/* Version “plus mairie” : clair, institutionnel, lisible + pages config JSON */
+:root{
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --surface-2: #f1f5fb;
+  --text: #111827;
+  --muted: #4b5563;
+  --line: #e5e7eb;
+  --accent: #0b5ed7;
+  --accent-2: #0a58ca;
+  --shadow: 0 10px 28px rgba(17,24,39,.10);
+  --radius: 14px;
+  --ok: #0f766e;
+  --warn: #b45309;
+  --danger: #b91c1c;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a{ color:inherit; }
+code{ background: #eef2ff; padding:2px 6px; border-radius:8px; }
+.container{ width:min(1120px, 92vw); margin:0 auto; }
+
+.skip-link{
+  position:absolute; left:-999px; top:8px;
+  padding:10px 12px; background:#111827; color:#fff; border-radius:10px;
+}
+.skip-link:focus{ left:12px; z-index:999; }
+
+/* Header */
+.site-header{
+  position: sticky; top:0; z-index:50;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:14px 0;
+}
+.brand{
+  display:flex; align-items:center; gap:12px;
+  text-decoration:none;
+}
+.brand-mark{
+  width:40px; height:40px; border-radius:12px;
+  display:grid; place-items:center;
+  background: var(--accent);
+  color:#fff; font-weight:800;
+}
+.brand-text span{ display:block; font-size:.82rem; color:var(--muted); }
+
+.nav{
+  display:flex; align-items:center; gap:10px;
+}
+.nav a{
+  text-decoration:none;
+  padding:10px 12px; border-radius:12px;
+  color: #1f2937;
+}
+.nav a:hover{ background: #f3f4f6; }
+.nav a[aria-current="page"]{ background:#eef2ff; }
+
+.nav-toggle{
+  display:none;
+  border:1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  padding:10px 12px; border-radius:12px;
+}
+.sr-only{
+  position:absolute; width:1px; height:1px;
+  padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;
+}
+
+/* Important bar */
+.important-bar{
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+.important-inner{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding: 10px 0;
+}
+.important-text{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.important-text strong{
+  padding:4px 10px;
+  border-radius:999px;
+  background: rgba(11,94,215,.10);
+  border:1px solid rgba(11,94,215,.22);
+  color:#0b2f6b;
+}
+.important-bar[data-style="warning"] .important-text strong{
+  background: rgba(180,83,9,.10);
+  border-color: rgba(180,83,9,.22);
+  color: #7c2d12;
+}
+.important-bar[data-style="danger"] .important-text strong{
+  background: rgba(185,28,28,.10);
+  border-color: rgba(185,28,28,.22);
+  color: #7f1d1d;
+}
+.important-link{
+  color: var(--accent);
+  text-decoration:none;
+  white-space:nowrap;
+}
+.important-link:hover{ text-decoration:underline; }
+.important-close{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:10px;
+  width:36px; height:36px;
+}
+
+/* Hero */
+.hero{ padding:28px 0 10px; }
+.hero-inner{
+  display:grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap:18px;
+  align-items: start;
+}
+.kicker{
+  display:inline-block;
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color: var(--muted);
+  background: #fff;
+}
+h1{ margin:12px 0 10px; font-size: clamp(2rem, 3.2vw, 2.75rem); letter-spacing:-.03em; }
+.lead{ margin:0 0 16px; color: var(--muted); font-size:1.05rem; line-height:1.55; }
+
+.hero-actions{ display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0 14px; }
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:8px;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background: #fff;
+  text-decoration:none;
+}
+.btn:hover{ background: #f9fafb; }
+.btn.primary{
+  border-color: rgba(11,94,215,.25);
+  background: var(--accent);
+  color:#fff;
+}
+.btn.primary:hover{ background: var(--accent-2); }
+.btn.ghost{ background: transparent; }
+.btn.small{ padding:10px 12px; border-radius:12px; font-size:.95rem; }
+
+.quick-links{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  display:inline-flex; padding:8px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  text-decoration:none;
+  font-size:.95rem;
+}
+.chip:hover{ color: var(--text); background: #f9fafb; }
+
+.hero-card{
+  border:1px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius);
+  padding:16px;
+  box-shadow: var(--shadow);
+}
+.h3{ font-size:1.2rem; margin:0 0 8px; }
+.note{
+  margin:12px 0;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background: var(--surface-2);
+}
+.list{ margin:8px 0 0; padding-left:18px; }
+.list li{ margin:4px 0; }
+
+/* Sections */
+.section{ padding: 26px 0; }
+.section.alt{
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+.section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:18px; }
+.section-head h2{ margin:0; font-size:1.55rem; letter-spacing:-.02em; }
+.muted{ color: var(--muted); }
+.small{ font-size:.95rem; }
+.section-actions{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+
+.grid{ display:grid; gap:14px; margin-top:14px; }
+.cards{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tiles{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.card{
+  border:1px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius);
+  padding:16px;
+  box-shadow: 0 1px 0 rgba(17,24,39,.03);
+}
+.card h3{ margin:8px 0 8px; letter-spacing:-.02em; }
+.tag{
+  display:inline-block;
+  margin:0;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(11,94,215,.08);
+  border:1px solid rgba(11,94,215,.18);
+  color: #0b2f6b;
+  font-size:.9rem;
+}
+.link{ color: var(--accent); text-decoration:none; }
+.link:hover{ text-decoration:underline; }
+
+.tile{
+  display:block;
+  text-decoration:none;
+  border:1px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius);
+  padding:16px;
+  box-shadow: 0 1px 0 rgba(17,24,39,.03);
+}
+.tile:hover{ background: #f9fafb; }
+
+/* Page head / prose */
+.page-head{ padding: 24px 0 8px; }
+.filters{
+  display:grid;
+  grid-template-columns: 1fr 220px;
+  gap:12px;
+  margin: 14px 0 0;
+}
+.filter{
+  display:block;
+  color: var(--muted);
+  font-size:.95rem;
+}
+.filter input, .filter select{
+  width:100%;
+  margin-top:6px;
+  padding:12px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#fff;
+  font: inherit;
+}
+.prose{ line-height:1.65; }
+
+/* Meetings list */
+.stack{ display:grid; gap:12px; }
+.meeting{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius: var(--radius);
+  padding:16px;
+}
+.meeting-top{
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  align-items:flex-start;
+}
+.meeting h3{ margin:6px 0 6px; }
+.meta{ color: var(--muted); font-size:.95rem; }
+.docs{ margin:10px 0 0; padding-left:18px; }
+.docs li{ margin:6px 0; }
+
+/* Contact */
+.contact{ grid-template-columns: 1fr 1.2fr; }
+label{ display:block; margin:10px 0 0; color: var(--muted); font-size:.95rem; }
+input, textarea{
+  width:100%;
+  margin-top:6px;
+  padding:12px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+textarea{ resize: vertical; }
+
+/* Footer */
+.site-footer{
+  padding: 18px 0 22px;
+  border-top:1px solid var(--line);
+  background: #fff;
+}
+.footer-inner{
+  display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero-inner{ grid-template-columns: 1fr; }
+  .cards{ grid-template-columns: 1fr; }
+  .tiles{ grid-template-columns: 1fr; }
+  .contact{ grid-template-columns: 1fr; }
+  .filters{ grid-template-columns: 1fr; }
+  .nav-toggle{ display:inline-flex; }
+  .nav{
+    display:none;
+    position:absolute;
+    right: 4vw;
+    top: 64px;
+    width: min(360px, 92vw);
+    flex-direction:column;
+    padding: 10px;
+    border-radius: 14px;
+    background: #fff;
+    border:1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+  .nav a{ width:100%; }
+  .nav.open{ display:flex; }
+}
+
+/* === Logo blason (sans fond) === */
+.brand-mark{
+  background: none !important;
+  color: inherit !important;
+}
+.brand-mark img{
+  width: 32px;
+  height: 32px;
+  display: block;
+  object-fit: contain;
+}
+
+/* === Image optionnelle dans les actus ("À la une") === */
+.news-media{
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.news-img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* === À la une : image pleine largeur dans la carte === */
+.news-card{
+  padding: 0;
+  overflow: hidden;
+}
+.news-media-full{
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.news-img-full{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.news-content{
+  padding: 18px;
+}
+
+/* === Logo partenaire (footer) === */
+.partner-logo{
+  height: 28px;
+  width: auto;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+@media (max-width: 600px){
+  .partner-logo{ height: 24px; }
+}
+
+
+/* === Équipe municipale (photos optionnelles) === */
+.team-card{ overflow: hidden; }
+.team-photo{
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  margin-bottom: 10px;
+}
+.team-photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* === Agenda : images optionnelles === */
+.agenda-card{
+  padding: 0;
+  overflow: hidden;
+}
+.agenda-content{
+  padding: 18px;
+}
+.agenda-media-full{
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.agenda-img-full{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Agenda page (cartes dans "À venir" / "Passés") */
+.agenda-meeting{
+  overflow: hidden;
+}
+.agenda-meeting-body{
+  padding-top: 10px;
+}
+
+
+/* === Footer : logo partenaire plus grand, aligné bas droite (sans chevauchement) === */
+.footer-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-main{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 18px;
+  width: 100%;
+}
+
+.partner-logo-wrap{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.partner-logo{
+  height: 70px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 768px){
+  .footer-main{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .partner-logo-wrap{
+    align-self: flex-end;
+    margin-top: 10px;
+  }
+  .partner-logo{
+    height: 56px;
+  }
+}
+
