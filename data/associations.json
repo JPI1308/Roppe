@@ -1,0 +1,91 @@
+{
+  "titre_page": "Associations",
+  "intro": "Retrouvez les associations de la commune et leurs contacts.",
+  "associations": [
+    {
+      "id": "foyer-rural",
+      "nom": "Foyer Rural",
+      "description": "Activités et animations pour tous les âges.",
+      "image": "",
+      "image_alt": "",
+      "liens": [
+        {
+          "label": "Contact",
+          "url": ""
+        },
+        {
+          "label": "Site / Réseaux sociaux",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "brcl",
+      "nom": "BRCL",
+      "description": "Association sportive / culturelle (à compléter).",
+      "image": "",
+      "image_alt": "",
+      "liens": [
+        {
+          "label": "Contact",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "age-dor",
+      "nom": "Age d'or",
+      "description": "Rencontres et activités pour les seniors.",
+      "image": "",
+      "image_alt": "",
+      "liens": [
+        {
+          "label": "Contact",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "anciens-combattants",
+      "nom": "Anciens combattants",
+      "description": "Mémoire, cérémonies et solidarité.",
+      "image": "",
+      "image_alt": "",
+      "liens": [
+        {
+          "label": "Contact",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "ape",
+      "nom": "APE (Association des Parents d'Élèves)",
+      "description": "Actions et événements pour soutenir les écoles.",
+      "image": "",
+      "image_alt": "",
+      "liens": [
+        {
+          "label": "Contact",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "croix-rouge",
+      "nom": "Croix Rouge",
+      "description": "Actions de solidarité et de secours (à compléter).",
+      "image": "",
+      "image_alt": "",
+      "liens": [
+        {
+          "label": "Informations",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Pour demander une mise à jour ou ajouter une association, contactez la mairie."
+  ]
+}

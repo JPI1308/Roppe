@@ -21,6 +21,26 @@ const yearEl = document.querySelector("#year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Utils
+
+function renderHomeButtons(s){
+  const wrap = document.querySelector("#homeActions");
+  if (!wrap) return;
+  const items = Array.isArray(s?.accueil_boutons) ? s.accueil_boutons : [];
+  wrap.innerHTML = items.map(b => {
+    const cls = b?.style === "primary" ? "btn primary" : "btn";
+    return `<a class="${cls}" href="${escapeAttr(b?.url || "#")}">${escapeHtml(b?.label || "")}</a>`;
+  }).join("");
+}
+
+function renderHomeQuickLinks(s){
+  const wrap = document.querySelector("#homeQuickLinks");
+  if (!wrap) return;
+  const items = Array.isArray(s?.accueil_liens) ? s.accueil_liens : [];
+  wrap.innerHTML = items.map(l => {
+    return `<a class="chip" href="${escapeAttr(l?.url || "#")}">${escapeHtml(l?.label || "")}</a>`;
+  }).join("");
+}
+
 function escapeHtml(str) {
   return String(str ?? "").replace(/[&<>"']/g, s => ({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
@@ -91,10 +111,10 @@ async function loadSettings() {
     const subtitle = document.querySelector("#siteSubtitle");
 
     const mairieNom = s?.mairie?.nom || "Mairie";
-    if (siteTitle) siteTitle.textContent = `Commune de ${s?.commune || ""}`;
+    if (siteTitle) siteTitle.textContent = mairieNom;
     if (heroTitle) heroTitle.textContent = mairieNom;
     if (footerName) footerName.textContent = mairieNom;
-    if (subtitle) subtitle.style.display = "none";
+    if (subtitle) subtitle.textContent = s?.commune ? `Commune de ${s.commune}` : "Commune";
 
     // Logo (configurable)
     const logoImg = document.querySelector("#logoImg");
@@ -147,7 +167,7 @@ async function loadSettings() {
     const partnerLogo = s?.partenaires?.logo_footer;
     if (partnerWrap) {
       if (partnerLogo) {
-        partnerWrap.innerHTML = `<img class="partner-logo" src="${escapeAttr(partnerLogo)}" alt="Territoire de Belfort" loading="lazy">`;
+        partnerWrap.innerHTML = ` · <img class="partner-logo" src="${escapeAttr(partnerLogo)}" alt="Territoire de Belfort" loading="lazy">`;
       } else {
         partnerWrap.innerHTML = "";
       }
@@ -183,6 +203,10 @@ async function loadSettings() {
         }
       }
     }
+    // Accueil : boutons + accès directs (configurables)
+    renderHomeButtons(s);
+    renderHomeQuickLinks(s);
+
   } catch (_) {}
 }
 

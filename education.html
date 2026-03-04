@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Éducation — Commune de Roppe" />
+  <title>Éducation — Commune de Roppe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Accueil">
+        <span class="brand-mark"><img id="logoImg" alt="Blason de Roppe" /></span>
+        <span class="brand-text">
+          <strong id="siteTitle">Commune</strong>
+          <span id="siteSubtitle">Commune</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" type="button">
+        <span class="sr-only">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Navigation principale"></nav>
+    </div>
+  </header>
+
+  <section id="importantBar" class="important-bar" hidden>
+    <div class="container important-inner">
+      <div class="important-text">
+        <strong id="importantTitle">Information</strong>
+        <span id="importantMessage"></span>
+      </div>
+      <a id="importantLink" class="important-link" href="#" hidden>En savoir plus</a>
+      <button id="importantClose" class="important-close" type="button" aria-label="Fermer l’information">✕</button>
+    </div>
+  </section>
+
+  <main id="contenu" role="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="kicker">Vie locale</p>
+        <h1 id="eduTitle">Éducation</h1>
+        <p class="lead" id="eduIntro"></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filters">
+          <label class="filter">
+            Recherche
+            <input id="eduSearch" placeholder="Ex : cantine, école, RPI, IME…" />
+          </label>
+        </div>
+
+        <div id="eduContent" class="stack" aria-live="polite"></div>
+
+        <p class="muted small" style="margin-top: 12px;">
+          Mise à jour : <code>/data/education.json</code>
+        </p>
+        <div id="eduNotes" class="stack" style="margin-top: 12px;"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <p class="muted small">
+          © <span id="year"></span> <span id="footerName">Commune</span>
+          · <span id="footerLinks"></span>
+        </p>
+        <div id="partnerLogoWrap" class="partner-logo-wrap" aria-label="Partenaire"></div>
+      </div>
+      <a class="link small" href="#contenu">Haut de page ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (async () => {
+      const titleEl = document.querySelector("#eduTitle");
+      const introEl = document.querySelector("#eduIntro");
+      const contentEl = document.querySelector("#eduContent");
+      const notesEl = document.querySelector("#eduNotes");
+      const searchEl = document.querySelector("#eduSearch");
+
+      function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[c])); }
+      function escAttr(s){ return String(s ?? "").replace(/"/g, "&quot;"); }
+
+      let data;
+      try {
+        const res = await fetch("data/education.json", { cache: "no-store" });
+        if (!res.ok) throw new Error();
+        data = await res.json();
+      } catch {
+        contentEl.innerHTML = '<div class="card"><p class="muted">Impossible de charger <code>/data/education.json</code>.</p></div>';
+        return;
+      }
+
+      if (titleEl && data.titre_page) titleEl.textContent = data.titre_page;
+      if (introEl) introEl.textContent = data.intro || "";
+
+      function render(){
+        const q = (searchEl?.value || "").trim().toLowerCase();
+
+        const sections = Array.isArray(data.sections) ? data.sections : [];
+        const html = sections.map(sec => {
+          const cards = Array.isArray(sec.cards) ? sec.cards : [];
+          const filtered = cards.filter(c => {
+            if (!q) return true;
+            const hay = [sec.titre, c.titre, c.contenu, ...(c.liens || []).map(l => l.label)].join(" ").toLowerCase();
+            return hay.includes(q);
+          });
+
+          if (!filtered.length) return "";
+
+          const cardsHtml = filtered.map(c => {
+            const links = Array.isArray(c.liens) ? c.liens.filter(l => (l.url || "").trim() && (l.label || "").trim()) : [];
+            const linksHtml = links.length
+              ? `<p class="small" style="margin-top: 10px;">${links.map(l => `<a class="link" href="${escAttr(l.url)}">${esc(l.label)}</a>`).join(" · ")}</p>`
+              : "";
+
+            return `
+              <article class="card edu-card">
+                ${c.image ? `
+                  <div class="edu-media-full">
+                    <img class="edu-img-full" src="${escAttr(c.image)}" alt="${escAttr(c.image_alt || c.titre || "")}" loading="lazy">
+                  </div>
+                ` : ""}
+                <p class="tag">${esc(sec.titre || "Info")}</p>
+                <h3>${esc(c.titre || "")}</h3>
+                ${c.contenu ? `<p class="muted small">${esc(c.contenu)}</p>` : ""}
+                ${linksHtml}
+              </article>
+            `;
+          }).join("");
+
+          return `
+            <section class="stack">
+              <h2 class="h3">${esc(sec.titre || "")}</h2>
+              <div class="grid cards">${cardsHtml}</div>
+            </section>
+          `;
+        }).join("");
+
+        contentEl.innerHTML = html || '<div class="card"><p class="muted">Aucun résultat.</p></div>';
+
+        const notes = Array.isArray(data.notes) ? data.notes : [];
+        notesEl.innerHTML = notes.length
+          ? `<div class="card"><h2 class="h3">À noter</h2><ul>${notes.map(n => `<li class="small">${esc(n)}</li>`).join("")}</ul></div>`
+          : "";
+      }
+
+      if (searchEl) searchEl.addEventListener("input", render);
+      render();
+    })();
+  </script>
+</body>
+</html>

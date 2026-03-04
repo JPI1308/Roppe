@@ -60,17 +60,9 @@
             Site statique, simple à maintenir : contenus en JSON + documents en PDF.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn primary" href="#demarches">Accès aux démarches</a>
-            <a class="btn" href="#contact">Contact & horaires</a>
-          </div>
+          <div id="homeActions" class="hero-actions" aria-label="Accès rapide"></div>
 
-          <div class="quick-links" aria-label="Accès direct">
-            <a class="chip" href="conseil.html">Comptes rendus</a>
-            <a class="chip" href="arretes.html">Arrêtés</a>
-            <a class="chip" href="urbanisme.html">Urbanisme</a>
-            <a class="chip" href="bulletins.html">Bulletins</a>
-          </div>
+          <div id="homeQuickLinks" class="quick-links" aria-label="Accès direct"></div>
         </div>
 
         <aside class="hero-card" aria-label="Encadré mairie">
@@ -181,13 +173,10 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
-      <div class="footer-main">
-        <p class="muted small">
-          © <span id="year"></span> <span id="footerName">Mairie</span>
-          · <span id="footerLinks"></span>
-        </p>
-        <div id="partnerLogoWrap" class="partner-logo-wrap" aria-label="Partenaire"></div>
-      </div>
+      <p class="muted small">
+        © <span id="year"></span> <span id="footerName">Mairie</span>
+        · <span id="footerLinks"></span><span id="partnerLogoWrap"></span>
+      </p>
       <a class="link small" href="#contenu">Haut de page ↑</a>
     </div>
   </footer>

@@ -39,37 +39,58 @@
     "logo": "assets/img/blason-roppe.png"
   },
   "navigation": [
-    {
-      "label": "À la une",
-      "url": "index.html#actus"
-    },
-
-    {
+     {
       "label": "Équipe municipale",
       "url": "equipe.html"
-    },
-    {
-      "label": "Démarches",
-      "url": "index.html#demarches"
-    },
+    }, 
+   {
+      "label": "Éducation - Jeunesse",
+      "url": "education.html"
+    }, 
+{
+      "label": "Vie associative",
+      "url": "associations.html"
+    }, 
+{
+      "label": "Commerces - Services",
+      "url": "commerces.html"
+    }, 
     {
       "label": "Conseil municipal",
       "url": "conseil.html"
     },
     {
-      "label": "Arrêtés",
-      "url": "arretes.html"
-    },
-    {
-      "label": "Urbanisme",
-      "url": "urbanisme.html"
-    },
-    {
-      "label": "Bulletins",
-      "url": "bulletins.html"
+      "label": "Publications",
+      "url": "publications.html"
     }
   ],
   "partenaires": {
     "logo_footer": "assets/img/partenaires/territoire-belfort.png"
-  }
+  },
+  "accueil_boutons": [
+    {
+      "label": "Accès aux démarches",
+      "url": "#demarches",
+      "style": "primary"
+    },
+    {
+      "label": "Contact & horaires",
+      "url": "#contact",
+      "style": "default"
+    }
+  ],
+  "accueil_liens": [
+    {
+      "label": "Conseil municipal",
+      "url": "conseil.html"
+    },
+    {
+      "label": "Publications",
+      "url": "publications.html"
+    },
+    {
+      "label": "Agenda",
+      "url": "index.html#agenda"
+    }
+  ]
 }

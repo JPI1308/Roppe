@@ -478,4 +478,58 @@ textarea{ resize: vertical; }
     height: 56px;
   }
 }
+/* === Associations : images optionnelles (plein largeur) === */
+.asso-card{
+  padding: 0;
+  overflow: hidden;
+}
+.asso-media-full{
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.asso-img-full{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.asso-content{
+  padding: 18px;
+}
+/* === Commerces : filtres + images optionnelles (plein largeur) === */
+.chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.chip{
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.chip.active{
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.badge{
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
 
+.commerce-card{ padding: 0; overflow: hidden; }
+.commerce-media-full{ width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+.commerce-img-full{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.commerce-content{ padding: 18px; }
+.commerce-actions{ margin-top: 10px; }

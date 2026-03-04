@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Commerces & services — Commune de Roppe" />
+  <title>Commerces & services — Commune de Roppe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Accueil">
+        <span class="brand-mark"><img id="logoImg" alt="Blason de Roppe" /></span>
+        <span class="brand-text">
+          <strong id="siteTitle">Commune</strong>
+          <span id="siteSubtitle">Commune</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" type="button">
+        <span class="sr-only">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Navigation principale"></nav>
+    </div>
+  </header>
+
+  <section id="importantBar" class="important-bar" hidden>
+    <div class="container important-inner">
+      <div class="important-text">
+        <strong id="importantTitle">Information</strong>
+        <span id="importantMessage"></span>
+      </div>
+      <a id="importantLink" class="important-link" href="#" hidden>En savoir plus</a>
+      <button id="importantClose" class="important-close" type="button" aria-label="Fermer l’information">✕</button>
+    </div>
+  </section>
+
+  <main id="contenu" role="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="kicker">Annuaire</p>
+        <h1 id="cTitle">Commerces & services</h1>
+        <p class="lead" id="cIntro"></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="filters">
+          <label class="filter" style="flex: 1;">
+            Recherche
+            <input id="cSearch" placeholder="Ex : boulangerie, coiffeur, plombier…" />
+          </label>
+
+          <label class="filter">
+            Trier
+            <select id="cSort">
+              <option value="alpha">A → Z</option>
+              <option value="cat">Par catégorie</option>
+            </select>
+          </label>
+
+          <label class="filter" style="min-width: 170px;">
+            Affichage
+            <select id="cView">
+              <option value="tous">Tous</option>
+              <option value="essentiels">Essentiels</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="chips" id="cChips" aria-label="Filtres de catégories"></div>
+
+        <div class="muted small" id="cCount" style="margin: 10px 0 0;"></div>
+
+        <div id="cGrid" class="grid cards" aria-live="polite" style="margin-top: 16px;"></div>
+
+        <p class="muted small" style="margin-top: 12px;">
+          Mise à jour : <code>/data/commerces.json</code>
+        </p>
+        <div id="cNotes" class="stack" style="margin-top: 12px;"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <p class="muted small">
+          © <span id="year"></span> <span id="footerName">Commune</span>
+          · <span id="footerLinks"></span>
+        </p>
+        <div id="partnerLogoWrap" class="partner-logo-wrap" aria-label="Partenaire"></div>
+      </div>
+      <a class="link small" href="#contenu">Haut de page ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (async () => {
+      const titleEl = document.querySelector("#cTitle");
+      const introEl = document.querySelector("#cIntro");
+      const gridEl = document.querySelector("#cGrid");
+      const notesEl = document.querySelector("#cNotes");
+      const chipsEl = document.querySelector("#cChips");
+      const searchEl = document.querySelector("#cSearch");
+      const sortEl = document.querySelector("#cSort");
+      const viewEl = document.querySelector("#cView");
+      const countEl = document.querySelector("#cCount");
+
+      function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[c])); }
+      function escAttr(s){ return String(s ?? "").replace(/"/g, "&quot;"); }
+
+      let data;
+      try {
+        const res = await fetch("data/commerces.json", { cache: "no-store" });
+        if (!res.ok) throw new Error();
+        data = await res.json();
+      } catch {
+        gridEl.innerHTML = '<article class="card"><p class="muted">Impossible de charger <code>/data/commerces.json</code>.</p></article>';
+        return;
+      }
+
+      if (titleEl && data.titre_page) titleEl.textContent = data.titre_page;
+      if (introEl) introEl.textContent = data.intro || "";
+
+      const categories = Array.isArray(data.categories) ? data.categories : [];
+      const catMap = new Map(categories.map(c => [c.id, c.label]));
+      const essentials = new Set(Array.isArray(data.essentiels) ? data.essentiels : []);
+
+      let activeCat = "all";
+
+      function chip(label, value){
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "chip";
+        btn.textContent = label;
+        btn.dataset.value = value;
+        btn.addEventListener("click", () => {
+          activeCat = value;
+          [...chipsEl.querySelectorAll(".chip")].forEach(b => b.classList.toggle("active", b.dataset.value === activeCat));
+          render();
+        });
+        return btn;
+      }
+
+      // Build chips
+      chipsEl.innerHTML = "";
+      chipsEl.appendChild(chip("Tous", "all"));
+      categories.forEach(c => chipsEl.appendChild(chip(c.label, c.id)));
+      chipsEl.querySelector(".chip")?.classList.add("active");
+
+      function render(){
+        const q = (searchEl?.value || "").trim().toLowerCase();
+        const sortMode = sortEl?.value || "alpha";
+        const viewMode = viewEl?.value || "tous";
+
+        let items = Array.isArray(data.items) ? data.items.slice() : [];
+
+        if (viewMode === "essentiels") {
+          items = items.filter(i => essentials.has(i.id));
+        }
+
+        if (activeCat !== "all") {
+          items = items.filter(i => (i.categorie || "") === activeCat);
+        }
+
+        if (q) {
+          items = items.filter(i => {
+            const hay = [
+              i.nom,
+              i.description,
+              i.adresse,
+              i.telephone,
+              i.email,
+              i.site,
+              i.horaires,
+              catMap.get(i.categorie) || i.categorie,
+              ...(i.mots_cles || [])
+            ].join(" ").toLowerCase();
+            return hay.includes(q);
+          });
+        }
+
+        // Sort
+        if (sortMode === "cat") {
+          items.sort((a,b) => {
+            const ca = catMap.get(a.categorie) || a.categorie || "";
+            const cb = catMap.get(b.categorie) || b.categorie || "";
+            const c = ca.localeCompare(cb);
+            if (c !== 0) return c;
+            return (a.nom || "").localeCompare(b.nom || "");
+          });
+        } else {
+          items.sort((a,b) => (a.nom || "").localeCompare(b.nom || ""));
+        }
+
+        if (countEl) {
+          countEl.textContent = items.length + " résultat(s)";
+        }
+
+        gridEl.innerHTML = items.map(i => {
+          const catLabel = catMap.get(i.categorie) || i.categorie || "Commerce";
+          const imgHtml = (i.image || "").trim()
+            ? `
+              <div class="commerce-media-full">
+                <img class="commerce-img-full" src="${escAttr(i.image)}" alt="${escAttr(i.image_alt || i.nom || "")}" loading="lazy">
+              </div>
+            `
+            : "";
+
+          const actions = [];
+          if ((i.telephone || "").trim()) actions.push(`<a class="link" href="tel:${escAttr(i.telephone.replace(/\s+/g,''))}">Appeler</a>`);
+          if ((i.email || "").trim()) actions.push(`<a class="link" href="mailto:${escAttr(i.email)}">Email</a>`);
+          if ((i.site || "").trim()) actions.push(`<a class="link" href="${escAttr(i.site)}" target="_blank" rel="noopener">Site</a>`);
+          if ((i.maps_query || "").trim()) {
+            const mq = encodeURIComponent(i.maps_query);
+            actions.push(`<a class="link" href="https://www.google.com/maps/search/?api=1&query=${mq}" target="_blank" rel="noopener">Itinéraire</a>`);
+          }
+
+          const meta = [
+            i.adresse ? esc(i.adresse) : "",
+            i.horaires ? esc(i.horaires) : ""
+          ].filter(Boolean).join("<br>");
+
+          return `
+            <article class="card commerce-card" id="${escAttr(i.id || "")}">
+              ${imgHtml}
+              <div class="commerce-content">
+                <p class="tag">${esc(catLabel)}</p>
+                <h3>${esc(i.nom || "")}${essentials.has(i.id) ? ' <span class="badge">Essentiel</span>' : ""}</h3>
+                ${i.description ? `<p class="muted small">${esc(i.description)}</p>` : ""}
+                ${meta ? `<p class="small">${meta}</p>` : ""}
+                ${actions.length ? `<p class="small commerce-actions">${actions.join(" · ")}</p>` : ""}
+              </div>
+            </article>
+          `;
+        }).join("") || '<article class="card"><p class="muted">Aucun résultat.</p></article>';
+
+        const notes = Array.isArray(data.notes) ? data.notes : [];
+        notesEl.innerHTML = notes.length
+          ? `<div class="card"><h2 class="h3">À noter</h2><ul>${notes.map(n => `<li class="small">${esc(n)}</li>`).join("")}</ul></div>`
+          : "";
+      }
+
+      if (searchEl) searchEl.addEventListener("input", render);
+      if (sortEl) sortEl.addEventListener("change", render);
+      if (viewEl) viewEl.addEventListener("change", render);
+
+      render();
+    })();
+  </script>
+</body>
+</html>
