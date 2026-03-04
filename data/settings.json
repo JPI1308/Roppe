@@ -15,7 +15,7 @@
   },
   "info_importante": {
     "active": true,
-    "style": "info",
+    "style": "warning",
     "titre": "Information importante",
     "message": "Exemple : Travaux de voirie — circulation alternée du 02/02 au 06/02. Merci de votre compréhension.",
     "lien_label": "En savoir plus",
