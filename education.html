@@ -129,7 +129,7 @@
           const cardsHtml = filtered.map(c => {
             const links = Array.isArray(c.liens) ? c.liens.filter(l => (l.url || "").trim() && (l.label || "").trim()) : [];
             const linksHtml = links.length
-              ? `<p class="small" style="margin-top: 10px;">${links.map(l => `<a class="link" href="${escAttr(l.url)}">${esc(l.label)}</a>`).join(" · ")}</p>`
+              ? `<p class="small" style="margin-top: 10px;">${links.map(l => `<a class="link" href="${escAttr(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join(" · ")}</p>`
               : "";
 
             return `

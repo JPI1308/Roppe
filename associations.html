@@ -125,7 +125,7 @@
         gridEl.innerHTML = filtered.map(a => {
           const links = Array.isArray(a.liens) ? a.liens.filter(l => (l.url || "").trim() && (l.label || "").trim()) : [];
           const linksHtml = links.length
-            ? `<p class="small asso-links">${links.map(l => `<a class="link" href="${escAttr(l.url)}">${esc(l.label)}</a>`).join(" · ")}</p>`
+            ? `<p class="small asso-links">${links.map(l => `<a class="link" href="${escAttr(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join(" · ")}</p>`
             : "";
 
           const imgHtml = (a.image || "").trim()
