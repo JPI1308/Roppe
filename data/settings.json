@@ -1,5 +1,7 @@
 {
-  "commune": "Roppe",
+  "header_title": "Commune de Roppe",  
+"header_subtitle": "Territoire de Belfort",
+"commune": "Roppe",
   "mairie": {
     "nom": "Mairie de Roppe",
     "adresse_ligne1": "33 avenue du Général de Gaulle",
@@ -79,18 +81,9 @@
       "style": "default"
     }
   ],
-  "accueil_liens": [
-    {
-      "label": "Conseil municipal",
-      "url": "conseil.html"
-    },
-    {
-      "label": "Publications",
-      "url": "publications.html"
-    },
-    {
-      "label": "Agenda",
-      "url": "index.html#agenda"
-    }
-  ]
+ "accueil_liens": [
+  { "label": "Agenda", "url": "agenda.html" },
+  { "label": "Publications", "url": "publications.html" },
+  { "label": "Conseil municipal", "url": "conseil.html" }
+]
 }

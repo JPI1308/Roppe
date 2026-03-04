@@ -669,172 +669,106 @@ textarea{ resize: vertical; }
   filter: brightness(0.98);
 }
 
+/* --- Amélioration bloc accueil --- */
 
-/* =====================================================================
-   HERO : bandeau photo (accueil) — rendu pro + lisibilité + mobile
-   Image attendue : assets/img/hero.jpg (2000×900 env.)
-   ===================================================================== */
-.hero{
-  position: relative;
-  color: #fff;
-  padding: 56px 0 18px;
-
-  /* Photo + voile pour la lisibilité */
-  background-image:
-    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 45%, rgba(0,0,0,.32) 100%),
-    url("assets/img/hero.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* panneau discret derrière le texte (lisibilité) */
-.hero-copy{
-  padding: 18px 18px 14px;
-  border-radius: 18px;
-  background: rgba(0,0,0,.28);
-  backdrop-filter: blur(4px);
-}
-
-/* on garde les éléments au-dessus du voile */
-.hero *{ position: relative; z-index: 1; }
-
-/* kicker lisible */
-.hero .kicker{
-  background: rgba(255,255,255,.16);
-  border-color: rgba(255,255,255,.28);
-  color: rgba(255,255,255,.96);
-}
-
-.hero h1{ color:#fff; text-shadow: 0 10px 26px rgba(0,0,0,.55); }
-.hero .lead{ color: rgba(255,255,255,.92); text-shadow: 0 8px 20px rgba(0,0,0,.35); }
-
-/* Carte infos pratiques : blanche semi-transparente pour rester lisible */
-.hero-card{
-  background: rgba(255,255,255,.96);
-  border-color: rgba(255,255,255,.55);
-  backdrop-filter: blur(6px);
-}
-.hero-card, .hero-card *{ color: var(--text); text-shadow: none; }
-.hero-card .muted{ color: #475569; }
-
-/* Boutons : contraste OK sur photo */
-.hero .btn{
-  background: rgba(255,255,255,.92);
-  border-color: rgba(255,255,255,.65);
-  color: var(--text);
-}
-.hero .btn:hover{ background: #fff; }
-.hero .btn.primary{
-  background: var(--accent);
-  border-color: rgba(11,94,215,.25);
-  color: #fff;
-}
-.hero .btn.primary:hover{ background: var(--accent-2); }
-
-/* Petits boutons (chips) */
-.hero .chip,
-.hero .btn.mini{
-  background: rgba(255,255,255,.90);
-  border-color: rgba(255,255,255,.65);
-}
-
-/* Responsive (mobile) */
-@media (max-width: 900px){
-  .hero{ padding: 42px 0 14px; }
-  .hero-inner{ grid-template-columns: 1fr; }
-  .hero-copy{ padding: 14px 14px 10px; }
-  .hero-card{ margin-top: 10px; }
-}
-@media (max-width: 520px){
-  .hero{ padding: 34px 0 10px; background-position: 30% center; }
-  .hero h1{ font-size: 1.9rem; }
-  .hero .lead{ font-size: 1.0rem; }
-  .hero-actions{ gap: 8px; }
-  .hero .btn{ width: 100%; }
-}
-
-/* =====================================================================
-   HERO : Carte "Informations pratiques" — intégration propre (GLASS SOBRE)
-   (Garde le texte très lisible, sans “retour en arrière”)
-   ===================================================================== */
-.hero-card{
-  position: relative;
-  overflow: hidden;
-
-  /* Glass discret (plus intégré que le blanc pur) */
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255,255,255,0.38);
-  border-radius: 18px;
-  padding: 22px;
-
-  box-shadow: 0 14px 42px rgba(0,0,0,0.22);
-}
-
-/* Un léger dégradé interne pour “premium” sans trop charger */
-.hero-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background: linear-gradient(180deg,
-    rgba(255,255,255,0.22) 0%,
-    rgba(255,255,255,0.06) 55%,
-    rgba(255,255,255,0.00) 100%
-  );
-}
-
-/* Typo du titre */
-.hero-card .h3, .hero-card h3{
-  font-size: 1.15rem;
+.hero h1{
+  font-size: 2.6rem;
   font-weight: 700;
-  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
 }
 
-/* Texte */
-.hero-card, .hero-card *{
-  color: var(--text);
-  text-shadow: none;
-}
-.hero-card .muted{ color: #475569; }
-.hero-card a{ color: var(--accent); }
-
-/* Encart horaires (si présent via .note) */
-.hero-card .note{
-  background: rgba(241,245,251,0.78);
-  border-color: rgba(229,231,235,0.80);
+.hero p{
+  font-size: 1.1rem;
+  opacity: 0.85;
 }
 
-/* Responsive : pas de translation (sobre) */
-@media (min-width: 901px){
-  .hero-card{ transform: none; }
-}
-/* ===== Intégration : halo derrière la carte de droite ===== */
-
-/* on crée un halo doux sur la moitié droite du bandeau */
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-
-  /* halo à droite (derrière la carte) */
-  background:
-    radial-gradient(650px 420px at 78% 42%,
-      rgba(0,0,0,0.32) 0%,
-      rgba(0,0,0,0.12) 45%,
-      rgba(0,0,0,0.00) 75%
-    );
+.home-actions{
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-/* s'assure que le contenu passe au-dessus */
-.hero-inner, .hero-inner *{ position:relative; z-index:1; }
+.quick-links{
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+/* --- Boutons accueil plus modernes --- */
 
-.hero-card{
-  border: 1px solid rgba(255,255,255,0.30);
-  background: rgba(255,255,255,0.86);
+.btn{
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.btn.primary{
+  background:#0b4ea2;
+  color:white;
+}
+
+.btn.mini{
+  padding:6px 12px;
+  font-size:0.9rem;
+  border-radius:20px;
+  background:#f1f5f9;
+}
+/* --- Header institutionnel --- */
+
+.site-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.site-brand img{
+  height:46px;
+}
+
+#siteTitle{
+  font-size:1.2rem;
+  font-weight:700;
+  line-height:1.2;
+}
+
+#siteSubtitle{
+  display:block;
+  font-size:0.85rem;
+  color:#64748b;
+  margin-top:2px;
+}
+/* --- Header institutionnel (logo + titre + sous-titre) --- */
+.site-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.site-brand img{
+  height:46px;
+  width:auto;
+}
+
+#siteTitle{
+  font-size:1.15rem;
+  font-weight:700;
+  line-height:1.15;
+  letter-spacing:-0.01em;
+}
+
+#siteSubtitle{
+  display:block;
+  font-size:0.85rem;
+  color:var(--muted);
+  margin-top:2px;
 }

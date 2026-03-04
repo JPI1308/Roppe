@@ -12,12 +12,6 @@
 
   <link rel="stylesheet" href="styles.css" />
   <script defer src="app.js"></script>
-
-  <style>
-    /* séparateur des liens rapides (si absent du thème) */
-    .quick-links .sep{ opacity:.5; padding: 0 .5rem; }
-  </style>
-
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -60,7 +54,7 @@
       <div class="container hero-inner">
         <div class="hero-copy">
           <p class="kicker">Site officiel de la commune</p>
-          <h1 id="heroTitle">Commune de Roppe</h1>
+          <h1 id="heroTitle">Mairie de Roppe</h1>
           <p class="lead">
             Informations municipales, démarches, publications et agenda.
             Site statique, simple à maintenir : contenus en JSON + documents en PDF.

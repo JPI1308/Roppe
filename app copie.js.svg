@@ -90,29 +90,11 @@ async function loadSettings() {
     const footerName = document.querySelector("#footerName");
     const subtitle = document.querySelector("#siteSubtitle");
 
-    // Header (à côté du blason) : "Commune de …" (configurable via header_title)
-    const headerTitle = (s?.header_title || (s?.commune ? `Commune de ${s.commune}` : "Commune"));
-    if (siteTitle) siteTitle.textContent = headerTitle;
-
-    // Sous-titre optionnel (bonus) : header_subtitle
-    if (subtitle) {
-      const sub = String(s?.header_subtitle || "").trim();
-      if (sub) {
-        subtitle.textContent = sub;
-        subtitle.style.display = "block";
-      } else {
-        subtitle.textContent = "";
-        subtitle.style.display = "none";
-      }
-    }
-
-    // Gros titre de la page d'accueil (au-dessus des boutons)
-    const heroText = (s?.hero_title || headerTitle);
-    if (heroTitle) heroTitle.textContent = heroText;
-
-    // Footer : garder le nom administratif (ex: "Mairie de Roppe") si présent
-    const footerText = (s?.mairie?.nom || `Mairie de ${s?.commune || ""}`);
-    if (footerName) footerName.textContent = footerText;
+const mairieNom = s?.header_title || `Commune de ${s?.commune || ""}`;
+    if (siteTitle) siteTitle.textContent = (s?.header_title || (s?.commune ? `Commune de ${s.commune}` : "Commune"));
+    if (heroTitle) heroTitle.textContent = mairieNom;
+    if (footerName) footerName.textContent = mairieNom;
+    if (subtitle) subtitle.style.display = "none";
 
     // Boutons d'accueil (accueil_boutons)
     const homeActions = document.querySelector("#homeActions");
