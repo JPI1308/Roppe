@@ -1,0 +1,110 @@
+{
+  "titre_page": "Éducation",
+  "intro": "Informations pratiques sur les établissements scolaires, le périscolaire, le RPI et l’IME.",
+  "sections": [
+    {
+      "id": "etablissements",
+      "titre": "Établissements scolaires",
+      "cards": [
+        {
+          "titre": "École maternelle",
+          "contenu": "Adresse, horaires, contact, inscriptions…",
+          "liens": [
+            {
+              "label": "Site / page dédiée",
+              "url": ""
+            },
+            {
+              "label": "Téléphone",
+              "url": ""
+            }
+          ],
+          "image": "",
+          "image_alt": ""
+        },
+        {
+          "titre": "École élémentaire",
+          "contenu": "Adresse, horaires, contact, inscriptions…",
+          "liens": [
+            {
+              "label": "Site / page dédiée",
+              "url": ""
+            },
+            {
+              "label": "Téléphone",
+              "url": ""
+            }
+          ],
+          "image": "",
+          "image_alt": ""
+        }
+      ]
+    },
+    {
+      "id": "periscolaire",
+      "titre": "Périscolaire",
+      "cards": [
+        {
+          "titre": "Accueil périscolaire",
+          "contenu": "Garderie, cantine, horaires, modalités d’inscription…",
+          "liens": [
+            {
+              "label": "Règlement / dossier d’inscription (PDF)",
+              "url": ""
+            },
+            {
+              "label": "Contact",
+              "url": ""
+            }
+          ],
+          "image": "",
+          "image_alt": ""
+        }
+      ]
+    },
+    {
+      "id": "rpi",
+      "titre": "RPI (Regroupement Pédagogique Intercommunal)",
+      "cards": [
+        {
+          "titre": "Organisation du RPI",
+          "contenu": "Communes concernées, répartition des classes, transports scolaires…",
+          "liens": [
+            {
+              "label": "Informations",
+              "url": ""
+            }
+          ],
+          "image": "",
+          "image_alt": ""
+        }
+      ]
+    },
+    {
+      "id": "ime",
+      "titre": "IME (Institut Médico-Éducatif)",
+      "cards": [
+        {
+          "titre": "IME – informations",
+          "contenu": "Présentation, accueil, contact, site web…",
+          "liens": [
+            {
+              "label": "Site web",
+              "url": ""
+            },
+            {
+              "label": "Contact",
+              "url": ""
+            }
+          ],
+          "image": "",
+          "image_alt": ""
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Pour les inscriptions scolaires, consultez la rubrique « À la une » et la page Contact si besoin.",
+    "Les informations ci-dessus sont indicatives et peuvent être mises à jour par la mairie."
+  ]
+}

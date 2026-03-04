@@ -1,0 +1,37 @@
+[
+  {
+    "date": "2026-02-12",
+    "type": "Conseil municipal",
+    "titre": "Conseil municipal du 12 février 2026",
+    "lieu": "Salle du Conseil",
+    "documents": [
+      {
+        "label": "Ordre du jour (PDF)",
+        "file": "docs/conseil/2026-02-12-odj.pdf"
+      },
+      {
+        "label": "Compte rendu (PDF)",
+        "file": "docs/conseil/2026-02-12-cr.pdf"
+      }
+    ],
+    "mots_cles": [
+      "budget",
+      "voirie"
+    ]
+  },
+  {
+    "date": "2026-01-15",
+    "type": "Commission",
+    "titre": "Commission urbanisme du 15 janvier 2026",
+    "lieu": "Mairie",
+    "documents": [
+      {
+        "label": "Compte rendu (PDF)",
+        "file": "docs/conseil/2026-01-15-cr.pdf"
+      }
+    ],
+    "mots_cles": [
+      "PLU"
+    ]
+  }
+]

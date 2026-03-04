@@ -1,0 +1,58 @@
+{
+  "titre_page": "Commerces & services",
+  "intro": "Annuaire des commerces et services présents sur la commune. Utilisez la recherche et les filtres pour trouver rapidement un contact.",
+  "categories": [
+    {
+      "id": "alimentation",
+      "label": "Alimentation"
+    },
+    {
+      "id": "restauration",
+      "label": "Restauration"
+    },
+    {
+      "id": "services",
+      "label": "Services"
+    },
+    {
+      "id": "artisanat",
+      "label": "Artisanat / BTP"
+    },
+    {
+      "id": "sante",
+      "label": "Santé"
+    },
+    {
+      "id": "auto",
+      "label": "Auto / Mobilité"
+    },
+    {
+      "id": "autre",
+      "label": "Autres"
+    }
+  ],
+  "essentiels": [],
+  "items": [
+    {
+      "id": "exemple-1",
+      "nom": "Nom du commerce",
+      "categorie": "services",
+      "mots_cles": [
+        "mot-clé",
+        "activité"
+      ],
+      "description": "Courte description (facultatif).",
+      "adresse": "Adresse complète (facultatif)",
+      "telephone": "",
+      "email": "",
+      "site": "",
+      "horaires": "",
+      "image": "",
+      "image_alt": "",
+      "maps_query": ""
+    }
+  ],
+  "notes": [
+    "Pour demander une mise à jour ou ajouter un commerce, contactez la mairie."
+  ]
+}

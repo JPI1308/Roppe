@@ -1,0 +1,41 @@
+[
+  {
+    "date": "2025-11-15",
+    "titre": "PLU — Règlement (version en vigueur)",
+    "categorie": "PLU",
+    "documents": [
+      {
+        "label": "Règlement (PDF)",
+        "file": "docs/urbanisme/plu-reglement.pdf"
+      },
+      {
+        "label": "Zonage (PDF)",
+        "file": "docs/urbanisme/plu-zonage.pdf"
+      }
+    ],
+    "mots_cles": [
+      "PLU",
+      "zonage",
+      "règlement"
+    ]
+  },
+  {
+    "date": "2026-01-10",
+    "titre": "Déposer une demande d’urbanisme",
+    "categorie": "Démarche",
+    "documents": [
+      {
+        "label": "Lien service en ligne",
+        "file": "https://www.service-public.fr/particuliers/vosdroits/N319"
+      },
+      {
+        "label": "Formulaire CERFA (PDF)",
+        "file": "docs/urbanisme/cerfa-exemple.pdf"
+      }
+    ],
+    "mots_cles": [
+      "permis",
+      "déclaration préalable"
+    ]
+  }
+]

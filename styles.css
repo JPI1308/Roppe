@@ -533,3 +533,58 @@ textarea{ resize: vertical; }
 .commerce-img-full{ width: 100%; height: 100%; object-fit: cover; display: block; }
 .commerce-content{ padding: 18px; }
 .commerce-actions{ margin-top: 10px; }
+/* === Infos (avec icônes) : Associations / Commerces === */
+.infos-block{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-line{
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.info-ico{
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.info-ico svg{
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: currentColor;
+}
+
+.info-txt{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 6px;
+}
+
+.info-label{
+  font-weight: 600;
+  color: var(--text);
+}
+
+.info-value{
+  color: var(--muted);
+}
+
+@media (max-width: 520px){
+  .info-txt{
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .info-label{ color: var(--muted); }
+}
+
