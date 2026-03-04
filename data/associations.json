@@ -8,16 +8,24 @@
       "description": "Activités et animations pour tous les âges.",
       "image": "",
       "image_alt": "",
-      "liens": [
-        {
-          "label": "Contact",
-          "url": ""
-        },
-        {
-          "label": "Site / Réseaux sociaux",
-          "url": ""
-        }
-      ]
+        "liens": [
+    {
+      "label": "Téléphone",
+      "url": "tel:0384210000"
+    },
+    {
+      "label": "Email",
+      "url": "mailto:contact@foyer-rural.fr"
+    },
+    {
+      "label": "Site internet",
+      "url": "https://www.foyer-rural.fr"
+    },
+    {
+      "label": "Localisation",
+      "url": "https://maps.google.com/?q=Roppe"
+    }
+  ]
     },
     {
       "id": "brcl",
@@ -68,7 +76,11 @@
         {
           "label": "Facebook de l'APE",
           "url": "https://www.facebook.com/p/Ape-Roppe-V%C3%A9trigne-100015242376243/"
-        }
+        },
+	{
+      "label": "Email",
+      "url": "mailto:contact@ape.fr"
+    	}
       ]
     },
     {
