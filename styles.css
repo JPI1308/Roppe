@@ -588,3 +588,65 @@ textarea{ resize: vertical; }
   .info-label{ color: var(--muted); }
 }
 
+/* === Infos (avec icônes) : Associations / Commerces === */
+.infos-block{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-line{
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.info-ico{
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.info-ico svg{
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: currentColor;
+}
+
+.info-txt{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 6px;
+}
+
+.info-label{
+  font-weight: 600;
+  color: var(--text);
+}
+
+.info-value{
+  color: var(--muted);
+}
+
+@media (max-width: 520px){
+  .info-txt{
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .info-label{ color: var(--muted); }
+}
+
+
+/* Couleurs par type d'info */
+.info-ico.kind-map{ color: #e11d48; }      /* rouge point/position */
+.info-ico.kind-phone{ color: #0b4ea2; }    /* bleu institutionnel */
+.info-ico.kind-mail{ color: #0b4ea2; }
+.info-ico.kind-globe{ color: #0b4ea2; }
+

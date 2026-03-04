@@ -135,16 +135,34 @@
             return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-3.3 0-6 2.7-6 6 0 4.5 6 12 6 12s6-7.5 6-12c0-3.3-2.7-6-6-6zm0 8.2c-1.2 0-2.2-1-2.2-2.2S10.8 5.8 12 5.8s2.2 1 2.2 2.2S13.2 10.2 12 10.2z"/></svg>`;
           case "clock":
             return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 11H7v-2h4V6h2v7z"/></svg>`;
+          case "globe":
+            return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm6.92 9h-3.1a15.7 15.7 0 0 0-1.31-5.05A8.02 8.02 0 0 1 18.92 11zM12 4c1.28 1.86 2.15 4.08 2.43 6H9.57c.28-1.92 1.15-4.14 2.43-6zM5.08 13h3.1c.27 1.82.86 3.5 1.69 4.95A8.02 8.02 0 0 1 5.08 13zm3.1-2h-3.1a8.02 8.02 0 0 1 4.79-5.05A15.7 15.7 0 0 0 8.18 11zM12 20c-1.28-1.86-2.15-4.08-2.43-6h4.86c-.28 1.92-1.15 4.14-2.43 6zm2.13-2.05c.83-1.45 1.42-3.13 1.69-4.95h3.1a8.02 8.02 0 0 1-4.79 4.95z"/></svg>`;
+          case "facebook":
+            return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V5c-.3 0-1.4-.1-2.7-.1-2.6 0-4.4 1.6-4.4 4.6V11H7v3h2.7v8h3.8z"/></svg>`;
+          case "instagram":
+            return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5zm0 2A1.5 1.5 0 1 0 13.5 12 1.5 1.5 0 0 0 12 10.5zm4.6-2.3a.9.9 0 1 1-.9-.9.9.9 0 0 1 .9.9z"/></svg>`;
+          case "file":
+            return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm1 7V3.5L19.5 9H15z"/></svg>`;
           default:
             return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 17h2v-6h-2v6zm0-8h2V7h-2v2zm1-7C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/></svg>`;
         }
       }
       function iconKind(label){
         const s = (label || "").toLowerCase();
+
         if (s.includes("tél") || s.includes("tel") || s.includes("phone")) return "phone";
         if (s.includes("mail") || s.includes("email") || s.includes("e-mail")) return "mail";
-        if (s.includes("adress") || s.includes("local") || s.includes("itin") || s.includes("maps")) return "map";
+
+        if (s.includes("adresse") || s.includes("adress") || s.includes("local") || s.includes("itin") || s.includes("maps")) return "map";
+
+        if (s.includes("site") || s.includes("web") || s.includes("internet") || s.includes("url") || s.includes("lien")) return "globe";
+
+        if (s.includes("facebook") || s.includes("fb")) return "facebook";
+        if (s.includes("instagram") || s.includes("insta")) return "instagram";
+        if (s.includes("pdf") || s.includes("document")) return "file";
+
         if (s.includes("hora") || s.includes("ouvert") || s.includes("heures")) return "clock";
+
         return "info";
       }
       function linkAttrs(url){
@@ -164,9 +182,9 @@
             if ((i.url || "").trim()){
               const href = escAttr(i.url);
               const attrs = linkAttrs(i.url);
-              return `<div class="info-line"><span class="info-ico">${icon}</span><div class="info-txt"><span class="info-label">${label}</span><a class="link" href="${href}"${attrs}>${value}</a></div></div>`;
+              return `<div class="info-line"><span class="info-ico kind-${kind}">${icon}</span><div class="info-txt"><span class="info-label">${label}</span><a class="link" href="${href}"${attrs}>${value}</a></div></div>`;
             }
-            return `<div class="info-line"><span class="info-ico">${icon}</span><div class="info-txt"><span class="info-label">${label}</span><span class="info-value">${value}</span></div></div>`;
+            return `<div class="info-line"><span class="info-ico kind-${kind}">${icon}</span><div class="info-txt"><span class="info-label">${label}</span><span class="info-value">${value}</span></div></div>`;
           }).join("");
         return html ? `<div class="infos-block">${html}</div>` : "";
       }
