@@ -12,6 +12,7 @@
 
   <link rel="stylesheet" href="styles.css" />
   <script defer src="app.js"></script>
+  <script defer src="contacts-ui.js"></script>
 
   <style>
     /* séparateur des liens rapides (si absent du thème) */
@@ -135,16 +136,22 @@
     <section id="contact" class="section">
       <div class="container">
         <div class="section-head">
-          <h2>Contact</h2>
+          <h2>Contacts utiles</h2>
           <p class="muted">Nous écrire ou nous joindre.</p>
         </div>
 
         <div class="grid contact">
-          <div class="card">
+          <div class="card" id="contactMairieCard">
             <h3>Coordonnées</h3>
             <p class="muted" id="contactAddress"></p>
             <p><strong>Tél.</strong> <a id="contactPhone" href="#"></a></p>
             <p class="muted small">Email : <a id="contactEmail" href="#"></a></p>
+          </div>
+
+          <div class="card" id="contactUsefulCard" hidden>
+            <h3></h3>
+            <p class="muted small" id="contactUsefulIntro" hidden></p>
+            <div id="contactUsefulList" class="contacts-list"></div>
           </div>
 
           <form class="card" method="post" action="#" aria-label="Formulaire de contact">

@@ -122,7 +122,7 @@
       if (mentionsEl) mentionsEl.textContent = data.mentions || "";
 
       function memberCard(m, groupeTitre){
-        const meta = [m.fonction, groupeTitre].filter(Boolean).join(" · ");
+	const meta = groupeTitre || "";
         const dels = Array.isArray(m.delegations) && m.delegations.length
           ? `<p class="muted small"><strong>Délégations :</strong> ${esc(m.delegations.join(", "))}</p>` : "";
         const comm = Array.isArray(m.commissions) && m.commissions.length
@@ -136,7 +136,6 @@
             ${photo}
             <p class="tag">${esc(m.fonction || "Élu(e)")}</p>
             <h3>${esc(m.nom || "")}</h3>
-            ${meta ? `<p class="meta">${esc(meta)}</p>` : ""}
             ${dels}
             ${comm}
           </article>

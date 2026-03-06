@@ -1,7 +1,7 @@
 {
-  "header_title": "Commune de Roppe",  
-"header_subtitle": "Territoire de Belfort",
-"commune": "Roppe",
+  "header_title": "Commune de Roppe",
+  "header_subtitle": "Territoire de Belfort",
+  "commune": "Roppe",
   "mairie": {
     "nom": "Mairie de Roppe",
     "adresse_ligne1": "33 avenue du Général de Gaulle",
@@ -41,22 +41,22 @@
     "logo": "assets/img/blason-roppe.png"
   },
   "navigation": [
-     {
+    {
       "label": "Équipe municipale",
       "url": "equipe.html"
-    }, 
-   {
+    },
+    {
       "label": "Éducation - Jeunesse",
       "url": "education.html"
-    }, 
-{
+    },
+    {
       "label": "Vie associative",
       "url": "associations.html"
-    }, 
-{
+    },
+    {
       "label": "Commerces - Services",
       "url": "commerces.html"
-    }, 
+    },
     {
       "label": "Conseil municipal",
       "url": "conseil.html"
@@ -81,9 +81,40 @@
       "style": "default"
     }
   ],
- "accueil_liens": [
-  { "label": "Agenda", "url": "agenda.html" },
-  { "label": "Publications", "url": "publications.html" },
-  { "label": "Conseil municipal", "url": "conseil.html" }
-]
+  "accueil_liens": [
+    {
+      "label": "Agenda",
+      "url": "agenda.html"
+    },
+    {
+      "label": "Publications",
+      "url": "publications.html"
+    },
+    {
+      "label": "Conseil municipal",
+      "url": "conseil.html"
+    }
+  ],
+  "contacts": {
+    "show_mairie_card": false,
+     "intro": "",
+    "items": [
+      {
+        "titre": "Accueil mairie",
+        "telephone": "03 84 29 91 70",
+        "email": "mairie@roppe.fr",
+        "note": "Aux horaires d'ouverture"
+      },
+      {
+        "titre": "École / périscolaire",
+        "telephone": "03 84 XX XX XX",
+        "email": "ecole@roppe.fr"
+      },
+	{
+       "titre": "Urgence eau / voirie",
+      "telephone": "06 XX XX XX XX",
+      "note": "En dehors des horaires d’ouverture"
+      }
+    ]
+  }
 }

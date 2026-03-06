@@ -179,6 +179,61 @@ async function loadSettings() {
     if (emailHome) { emailHome.href = emailHref; emailHome.textContent = email || "—"; }
     if (emailContact) { emailContact.href = emailHref; emailContact.textContent = email || "—"; }
 
+    
+    // Contacts utiles (bas de page) : configurable via settings.json -> contacts
+    // - contacts.show_mairie_card: false pour masquer la carte "Coordonnées"
+    // - contacts.items: liste de contacts { titre, telephone, email, note }
+    const usefulCard = document.querySelector("#contactUsefulCard");
+    const usefulList = document.querySelector("#contactUsefulList");
+    const usefulIntro = document.querySelector("#contactUsefulIntro");
+    const mairieCard = document.querySelector("#contactMairieCard");
+
+    const contactsCfg = s?.contacts || {};
+    const showMairieCard = contactsCfg?.show_mairie_card !== false;
+
+    if (mairieCard) mairieCard.hidden = !showMairieCard;
+
+    const items = Array.isArray(contactsCfg?.items) ? contactsCfg.items : [];
+    if (usefulCard && usefulList) {
+      if (items.length) {
+        usefulCard.hidden = false;
+
+        const intro = String(contactsCfg?.intro || "").trim();
+        if (usefulIntro) {
+          if (intro) {
+            usefulIntro.hidden = false;
+            usefulIntro.textContent = intro;
+          } else {
+            usefulIntro.hidden = true;
+            usefulIntro.textContent = "";
+          }
+        }
+
+        usefulList.innerHTML = items.map(c => {
+          const titre = String(c?.titre || "").trim();
+          const tel = String(c?.telephone || "").trim();
+          const email2 = String(c?.email || "").trim();
+          const note = String(c?.note || "").trim();
+
+          const telHref = tel ? `tel:${tel.replace(/\s+/g,"")}` : "";
+          const mailHref = email2 ? `mailto:${email2}` : "";
+
+          return `
+            <div class="contact-item">
+              ${titre ? `<div class="contact-item-title">${escapeHtml(titre)}</div>` : ""}
+              ${tel ? `<a class="contact-item-line link" href="${escapeAttr(telHref)}">Tél. ${escapeHtml(tel)}</a>` : ""}
+              ${email2 ? `<a class="contact-item-line link" href="${escapeAttr(mailHref)}">Email ${escapeHtml(email2)}</a>` : ""}
+              ${note ? `<div class="contact-item-note">${escapeHtml(note)}</div>` : ""}
+            </div>
+          `;
+        }).join("");
+      } else {
+        usefulCard.hidden = true;
+        usefulList.innerHTML = "";
+        if (usefulIntro) { usefulIntro.hidden = true; usefulIntro.textContent = ""; }
+      }
+    }
+
     // Hours
     const hours = Array.isArray(s?.mairie?.horaires) ? s.mairie.horaires : [];
     const hoursUl = document.querySelector("#mairieHours");

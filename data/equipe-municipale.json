@@ -6,15 +6,13 @@
       "titre": "Le Maire",
       "membres": [
         {
-          "nom": "Nom Prénom",
+          "nom": "MAURICE Jean-Guillaume",
           "fonction": "Maire",
           "delegations": [
-            "Administration générale",
-            "Représentation de la commune"
           ],
           "commissions": [],
           "contact": "",
-          "photo": ""
+          "photo": "assets/img/equipe/JMA.jpg"
         }
       ]
     },
@@ -22,18 +20,52 @@
       "titre": "Les Adjoints",
       "membres": [
         {
-          "nom": "Nom Prénom",
+          "nom": "GONCALVES Sylvie",
           "fonction": "1er Adjoint",
           "delegations": [
-            "Finances",
-            "Travaux"
+          "Education","Vie sociale et associative"
           ],
           "commissions": [
-            "Commission Finances",
-            "Commission Travaux"
+           
           ],
           "contact": "",
-          "photo": ""
+          "photo": "assets/img/equipe/SGO.jpg"
+        },
+	{
+          "nom": "FRELIN Matthieu",
+          "fonction": "3ème Adjoint",
+          "delegations": [
+          "Travaux", "Forêt"
+          ],
+          "commissions": [
+           
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/MFR.jpg"
+        },
+	{
+          "nom": "PRION Colette",
+          "fonction": "2nd Adjoint",
+          "delegations": [
+          "Centre de loisirs", "Château Lesmann"
+          ],
+          "commissions": [
+           
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/CPR.jpg"
+        },
+	{
+          "nom": "PERREZ Simon",
+          "fonction": "4ième Adjoint",
+          "delegations": [
+          "Urbanisme","Agents Municipaux"
+          ],
+          "commissions": [
+           
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/SPE.jpg"
         }
       ]
     },
@@ -41,14 +73,104 @@
       "titre": "Les Conseillers municipaux",
       "membres": [
         {
-          "nom": "Nom Prénom",
+          "nom": "HANNON Danielle",
           "fonction": "Conseiller municipal",
           "delegations": [],
           "commissions": [
-            "Commission Urbanisme"
+         
           ],
           "contact": "",
-          "photo": ""
+          "photo": "assets/img/equipe/DHA.jpg"
+        },
+	{
+          "nom": "IWASINTA Jean-Philippe",
+          "fonction": "Conseiller municipal",
+          "delegations": [],
+          "commissions": [
+          
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/JIW.jpg"
+        },
+	{
+          "nom": "UNTERSEE Maryline",
+          "fonction": "Conseiller municipal",
+          "delegations": [],
+          "commissions": [
+         
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/MUN.jpg"
+        },
+	{
+          "nom": "BILLEREY Gilles",
+          "fonction": "Conseiller municipal",
+          "delegations": [],
+          "commissions": [
+           
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/GBI.jpg"
+        },
+	{
+          "nom": "GROSLAMBERT Delphine",
+          "fonction": "Conseiller municipal",
+          "delegations": [],
+          "commissions": [
+           
+          ],
+          "contact": "",
+         "photo": "assets/img/equipe/DGR.jpg"
+        },
+	{
+          "nom": "SIFFERT Francis",
+          "fonction": "Conseiller municipal",
+          "delegations": [],
+          "commissions": [
+            
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/FSI.jpg"
+        },
+{
+          "nom": "LEPAGE Séverine",
+          "fonction": "Conseiller municipal",
+          "delegations": [],
+          "commissions": [
+          
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/SLE.jpg"
+        },
+{
+          "nom": "GIRARD Nicolas",
+          "fonction": "Conseiller municipal",
+          "delegations": [],
+          "commissions": [
+          
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/NGI.jpg"
+        },
+{
+          "nom": "BOSSU Maëva",
+          "fonction": "Conseiller municipal",
+          "delegations": [],
+          "commissions": [
+           
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/MBO.jpg"
+        },
+	{
+          "nom": "GRANDHAYE Alexis",
+          "fonction": "Conseiller municipal",
+          "delegations": [],
+          "commissions": [
+           
+          ],
+          "contact": "",
+          "photo": "assets/img/equipe/AGR.jpg"
         }
       ]
     }
