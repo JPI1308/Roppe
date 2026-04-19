@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Actualités — Commune de Roppe" />
+  <title>Actualités — Commune de Roppe</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Accueil">
+        <span class="brand-mark"><img id="logoImg" alt="Blason de Roppe" /></span>
+        <span class="brand-text">
+          <strong id="siteTitle">Mairie</strong>
+          <span id="siteSubtitle">Commune</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" type="button">
+        <span class="sr-only">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Navigation principale"></nav>
+    </div>
+  </header>
+
+  <section id="importantBar" class="important-bar" hidden>
+    <div class="container important-inner">
+      <div class="important-text">
+        <strong id="importantTitle">Information</strong>
+        <span id="importantMessage"></span>
+      </div>
+      <a id="importantLink" class="important-link" href="#" hidden>En savoir plus</a>
+      <button id="importantClose" class="important-close" type="button" aria-label="Fermer l’information">✕</button>
+    </div>
+  </section>
+
+  <main id="contenu" role="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="kicker">Actualités</p>
+        <h1>À la une</h1>
+        <p class="lead">Retrouvez les dernières informations de la commune.</p>
+
+        <div class="filters">
+          <label class="filter">
+            Recherche
+            <input id="newsSearch" placeholder="Ex : travaux, mairie, château..." />
+          </label>
+
+          <label class="filter">
+            Catégorie
+            <select id="newsCategory">
+              <option value="">Toutes</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="newsPinned" class="stack"></div>
+        <div id="newsList" class="grid cards"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <p class="muted small">
+          © <span id="year"></span> <span id="footerName">Mairie</span>
+          · <span id="footerLinks"></span>
+        </p>
+        <div id="partnerLogoWrap" class="partner-logo-wrap" aria-label="Partenaire"></div>
+      </div>
+      <a class="link small" href="#contenu">Haut de page ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (async () => {
+      const pinnedWrap = document.querySelector("#newsPinned");
+      const listWrap = document.querySelector("#newsList");
+      const search = document.querySelector("#newsSearch");
+      const category = document.querySelector("#newsCategory");
+
+      if (!pinnedWrap || !listWrap || !search || !category) return;
+
+      let items = [];
+      try {
+        const res = await fetch("data/actualites.json", { cache: "no-store" });
+        if (!res.ok) throw new Error();
+        items = await res.json();
+      } catch {
+        listWrap.innerHTML = '<div class="card"><p class="muted">Impossible de charger <code>/data/actualites.json</code>.</p></div>';
+        return;
+      }
+
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[c]));
+      const escAttr = (s) => String(s ?? "").replace(/"/g, "&quot;");
+
+      const formatDate = (iso) => {
+        if (!iso || !/^\\d{4}-\\d{2}-\\d{2}$/.test(iso)) return iso || "";
+        const [y,m,d] = iso.split("-");
+        return `${d}/${m}/${y}`;
+      };
+
+      const categories = [...new Set(items.map(i => i.categorie).filter(Boolean))].sort();
+      category.innerHTML = '<option value="">Toutes</option>' + categories.map(c => `<option value="${escAttr(c)}">${esc(c)}</option>`).join("");
+
+      function card(item, featured = false) {
+        const img = item.image
+          ? `<div class="${featured ? 'news-media news-media-large' : 'news-media'}">
+               <img src="${escAttr(item.image)}" alt="${escAttr(item.alt || item.titre || '')}" loading="lazy">
+             </div>`
+          : "";
+
+        return `
+          <article class="card news-card ${featured ? 'news-card-featured' : ''}">
+            ${img}
+            <div class="news-content">
+              ${item.categorie ? `<p class="tag">${esc(item.categorie)}</p>` : ""}
+              <h3>${esc(item.titre || "")}</h3>
+              ${item.date ? `<p class="meta">${esc(formatDate(item.date))}</p>` : ""}
+              ${item.resume ? `<p class="muted">${formatText(item.contenu || item.resume)}</p>` : ""}
+              ${item.lien ? `<p><a class="btn" href="${escAttr(item.lien)}">${esc(item.label_bouton || "Lire la suite")}</a></p>` : ""}
+            </div>
+          </article>
+        `;
+      }
+function formatText(text) {
+  return (text || "").replace(/\n/g, "<br>");
+}
+      function render() {
+        const q = search.value.trim().toLowerCase();
+        const cat = category.value.trim();
+
+        const filtered = items.filter(item => {
+          const hay = [
+            item.titre,
+            item.resume,
+            item.categorie
+          ].join(" ").toLowerCase();
+
+          const okSearch = !q || hay.includes(q);
+          const okCat = !cat || item.categorie === cat;
+          return okSearch && okCat;
+        });
+
+        const pinned = filtered.filter(i => i.epingle);
+        const normal = filtered.filter(i => !i.epingle);
+
+        pinnedWrap.innerHTML = pinned.length
+          ? `
+            <section class="stack">
+              <h2 class="h3">À la une</h2>
+              ${pinned.map(i => card(i, true)).join("")}
+            </section>
+          `
+          : "";
+
+        listWrap.innerHTML = normal.length
+          ? normal.map(i => card(i)).join("")
+          : '<div class="card"><p class="muted">Aucune actualité trouvée.</p></div>';
+      }
+
+      search.addEventListener("input", render);
+      category.addEventListener("change", render);
+      render();
+    })();
+  </script>
+</body>
+</html>

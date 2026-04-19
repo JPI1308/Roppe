@@ -16,7 +16,7 @@
     ]
   },
   "info_importante": {
-    "active": true,
+    "active": false,
     "style": "warning",
     "titre": "Information importante",
     "message": "Exemple : Travaux de voirie — circulation alternée du 02/02 au 06/02. Merci de votre compréhension.",
@@ -82,10 +82,7 @@
     }
   ],
   "accueil_liens": [
-    {
-      "label": "Agenda",
-      "url": "agenda.html"
-    },
+    
     {
       "label": "Publications",
       "url": "publications.html"
@@ -105,16 +102,20 @@
         "email": "mairie@roppe.fr",
         "note": "Aux horaires d'ouverture"
       },
-      {
-        "titre": "École / périscolaire",
-        "telephone": "03 84 XX XX XX",
-        "email": "ecole@roppe.fr"
+	  {
+        "titre": "Ecole maternelle",
+        "telephone": "03 84 29 46 81"
+		},
+	  {
+        "titre": "Ecole primaire",
+        "telephone": "03 84 29 86 98"
       },
-	{
-       "titre": "Urgence eau / voirie",
-      "telephone": "06 XX XX XX XX",
-      "note": "En dehors des horaires d’ouverture"
+      {
+        "titre": "Périscolaire",
+        "telephone": "03 84 29 89 20",
+        "email": "alsh.roppe@gmail.com"
       }
+	
     ]
   }
 }
