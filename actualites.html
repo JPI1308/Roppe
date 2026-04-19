@@ -136,6 +136,13 @@
               ${item.date ? `<p class="meta">${esc(formatDate(item.date))}</p>` : ""}
               ${item.resume ? `<p class="muted">${formatText(item.contenu || item.resume)}</p>` : ""}
               ${item.lien ? `<p><a class="btn" href="${escAttr(item.lien)}">${esc(item.label_bouton || "Lire la suite")}</a></p>` : ""}
+			  ${item.fichier ? `
+  <p>
+    <a class="link download-link" href="${escAttr(item.fichier)}" target="_blank" rel="noopener">
+      ${esc(item.label_fichier || "Télécharger")}
+    </a>
+  </p>
+` : ""}
             </div>
           </article>
         `;

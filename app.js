@@ -322,7 +322,17 @@ async function loadNews() {
             <p class="tag">${escapeHtml(item.category || "Info")}</p>
             <h3>${escapeHtml(item.title)}</h3>
             <p class="muted small">${escapeHtml(item.date)} · ${escapeHtml(item.summary)}</p>
-            <a class="link" href="${escapeAttr(item.url || "#")}">Lire →</a>
+            ${item.url ? `
+  <a class="link" href="${escapeAttr(item.url)}">
+    Lire →
+  </a>
+` : ""}
+
+${item.fichier ? `
+  <a class="link" href="${escapeAttr(item.fichier)}" target="_blank" rel="noopener">
+    Télécharger →
+  </a>
+` : ""}
           </div>
         </article>
       `;

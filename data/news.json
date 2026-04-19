@@ -1,6 +1,16 @@
 [
+   {
+    "date": "26/04/2026",
+    "category": "Activités",
+    "title": "Marche du canton",
+    "summary": "Marche du canton organisée par les communes d'Offemont, Roppe et Vétrignes",
+    "image": "assets/img/actus/marche.png",
+    "image_alt": "Marche du canton",
+	"fichier":"docs/actualites/MARCHE2026.pdf"
+	
+  },
   {
-    "date": "19/04/2026",
+    "date": "27/04/2026",
     "category": "Commission",
     "title": "Appel à volontaires",
     "summary": "Commission Communales des Impôts(CCID)",
