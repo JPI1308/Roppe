@@ -7,7 +7,7 @@
     "adresse_ligne1": "33 avenue du Général de Gaulle",
     "adresse_ligne2": "90380 Roppe",
     "telephone": "+33384299170",
-    "email": "mairie@roppe.fr",
+    "email": "mairie@communeroppe.fr",
     "horaires": [
       "Lundi : 09:00–12:00",
       "Mardi : 14:00–17:00",
@@ -99,7 +99,7 @@
       {
         "titre": "Accueil mairie",
         "telephone": "03 84 29 91 70",
-        "email": "mairie@roppe.fr",
+        "email": "mairie@communeroppe.fr",
         "note": "Aux horaires d'ouverture"
       },
 	  {
